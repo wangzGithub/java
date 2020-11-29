@@ -1,4 +1,4 @@
-# ÅäÖÃmysqlÊı¾İ¿âÁ¬½Ó
+# é…ç½®mysqlæ•°æ®æº
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -7,7 +7,7 @@ spring:
     username: root
     password: root
 
-# ÅäÖÃmybatis
+# é…ç½®mybatis
 mybatis:
   mapper-locations: classpath:mybatis/mapper/*.xml
   config-location: classpath:mybatis/mybatis-config.xml
