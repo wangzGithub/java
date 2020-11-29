@@ -1,0 +1,14 @@
+# 配置mysql数据库连接
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: "jdbc:mysql://localhost:2589/practise?useUnicode=true&characterEncoding=utf-8\
+    &serverTimezone=UTC&allowPublicKeyRetrieval=true"
+    username: root
+    password: root
+
+# 配置mybatis
+mybatis:
+  mapper-locations: classpath:mybatis/mapper/*.xml
+  config-location: classpath:mybatis/mybatis-config.xml
+  type-aliases-package: com.ego.practice.bean
