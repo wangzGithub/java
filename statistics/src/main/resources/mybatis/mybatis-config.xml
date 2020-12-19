@@ -11,5 +11,6 @@
         <typeAlias alias="Map" type="java.util.Map" />
 
         <typeAlias alias="User" type="com.syica.statistics.bean.User" />
+        <typeAlias alias="InOutType" type="com.syica.statistics.bean.InOutType" />
     </typeAliases>
 </configuration>

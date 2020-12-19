@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.syica.statistics.dao.InOutTypeDao">
+    
+    <resultMap id="BaseResultMap" type="InOutType">
+        <id column="id" property="id" javaType="Integer" />
+        <result column="code" property="code" javaType="String" />
+        <result column="name" property="name" javaType="String" />
+    </resultMap>
+
+    <select id="getListByUserId" resultMap="BaseResultMap" parameterType="Integer">
+        select * from tb_in_out_type where user_id = #{0}
+    </select>
+
+    <insert id="addInOutType" parameterType="InOutType">
+        insert into tb_in_out_type (code, name, user_id) values (#{code}, #{name}, #{userId})
+    </insert>
+</mapper>
