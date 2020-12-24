@@ -16,4 +16,6 @@ public interface InOutTypeDao {
     List<InOutType> getListByUserId(int userId);
 
     int addInOutType(InOutType inOutType);
+
+    int deleteInOutType(int id);
 }

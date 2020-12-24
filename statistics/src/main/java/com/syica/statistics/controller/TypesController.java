@@ -44,4 +44,12 @@ public class TypesController {
         int num = this.inOutTypeService.addInOutType(inOutType);
         return num;
     }
+
+    @CheckToken
+    @RequestMapping(value = "/deleteInOutType", method = RequestMethod.POST)
+    public int deleteInOutType(@RequestBody Map params) {
+        int id = (int) params.get("id");
+        int num = this.inOutTypeService.deleteInOutType(id);
+        return num;
+    }
 }

@@ -20,4 +20,8 @@ public class InOutTypeService {
     public int addInOutType(InOutType inOutType) {
         return this.inOutTypeDao.addInOutType(inOutType);
     }
+
+    public int deleteInOutType(int id) {
+        return this.inOutTypeDao.deleteInOutType(id);
+    }
 }

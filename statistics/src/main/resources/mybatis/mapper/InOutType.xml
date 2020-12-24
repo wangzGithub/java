@@ -16,4 +16,8 @@
     <insert id="addInOutType" parameterType="InOutType">
         insert into tb_in_out_type (code, name, user_id) values (#{code}, #{name}, #{userId})
     </insert>
+
+    <delete id="deleteInOutType" parameterType="Integer">
+        delete from tb_in_out_type where id = #{0}
+    </delete>
 </mapper>
