@@ -1,7 +1,9 @@
 package com.syica.statistics.controller;
 
+import com.syica.statistics.bean.FundType;
 import com.syica.statistics.bean.InOutType;
 import com.syica.statistics.config.CheckToken;
+import com.syica.statistics.service.FundTypeService;
 import com.syica.statistics.service.InOutTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,6 +25,14 @@ public class TypesController {
     @Autowired
     private InOutTypeService inOutTypeService;
 
+    @Autowired
+    private FundTypeService fundTypeService;
+
+    /**
+     * 获取用户关联的所有收支类型
+     * @param params
+     * @return
+     */
     @CheckToken
     @RequestMapping(value = "/getInOutTypeListByUserId", method = RequestMethod.POST)
     public List<InOutType> getInOutTypeListByUserId(@RequestBody Map params) {
@@ -31,6 +41,11 @@ public class TypesController {
         return list;
     }
 
+    /**
+     * 添加收支类型
+     * @param params
+     * @return
+     */
     @CheckToken
     @RequestMapping(value = "/addInOutType", method = RequestMethod.POST)
     public int addInOutType(@RequestBody Map params) {
@@ -45,11 +60,40 @@ public class TypesController {
         return num;
     }
 
+    /**
+     * 删除收支类型
+     * @param params
+     * @return
+     */
     @CheckToken
     @RequestMapping(value = "/deleteInOutType", method = RequestMethod.POST)
     public int deleteInOutType(@RequestBody Map params) {
         int id = (int) params.get("id");
         int num = this.inOutTypeService.deleteInOutType(id);
         return num;
+    }
+
+    @CheckToken
+    @RequestMapping(value = "/getFundTypeListByUserId", method = RequestMethod.POST)
+    public List<FundType> getFundTypeListByUserId(@RequestBody Map params) {
+        List<FundType> result = null;
+        String userId = (String) params.get("userId");
+        result = this.fundTypeService.getAllByUserId(Integer.parseInt(userId));
+        return result;
+    }
+
+    @CheckToken
+    @RequestMapping(value = "addFundType", method = RequestMethod.POST)
+    public int addFundType(@RequestBody Map params) {
+        String code = (String) params.get("code");
+        String name = (String) params.get("name");
+        String userId = (String) params.get("userId");
+        FundType fundType = new FundType();
+        fundType.setCode(code);
+        fundType.setName(name);
+        fundType.setStatus(0);
+        fundType.setUserId(Integer.parseInt(userId));
+        int result = this.fundTypeService.addFundType(fundType);
+        return result;
     }
 }

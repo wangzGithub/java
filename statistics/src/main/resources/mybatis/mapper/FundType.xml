@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.syica.statistics.dao.FundTypeDao">
+    
+    <resultMap id="BaseResultMap" type="FundType">
+        <id column="id" property="id" javaType="Integer" />
+        <result column="code" property="code" javaType="String" />
+        <result column="name" property="name" javaType="String" />
+        <result column="status" property="status" javaType="Integer" />
+        <result column="user_id" property="userId" javaType="Integer" />
+    </resultMap>
+
+    <select id="getAllByUserId" resultMap="BaseResultMap" parameterType="Integer">
+        select * from tb_fund_type where user_id = #{0} and status = 0
+    </select>
+
+    <insert id="addFundType" parameterType="FundType">
+        insert into tb_fund_type (code, name, status, user_id) values (#{code}, #{name}, #{status}, #{userId})
+    </insert>
+
+</mapper>

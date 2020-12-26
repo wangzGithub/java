@@ -1,6 +1,7 @@
 package com.syica.statistics.controller;
 
 import com.syica.statistics.bean.User;
+import com.syica.statistics.config.CheckToken;
 import com.syica.statistics.config.PassToken;
 import com.syica.statistics.service.TokenService;
 import com.syica.statistics.service.UserService;
@@ -42,6 +43,7 @@ public class LoginController {
                 result.put("message", "success");
                 result.put("token", token);
                 result.put("userId", user.getId());
+                result.put("username", user.getUsername());
             }
         } else {
             result.put("code", 1);
@@ -49,4 +51,5 @@ public class LoginController {
         }
         return result;
     }
+
 }
