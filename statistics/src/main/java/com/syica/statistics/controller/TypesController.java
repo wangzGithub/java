@@ -1,9 +1,11 @@
 package com.syica.statistics.controller;
 
 import com.syica.statistics.bean.FundType;
+import com.syica.statistics.bean.InOutSources;
 import com.syica.statistics.bean.InOutType;
 import com.syica.statistics.config.CheckToken;
 import com.syica.statistics.service.FundTypeService;
+import com.syica.statistics.service.InOutSourcesService;
 import com.syica.statistics.service.InOutTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,6 +29,9 @@ public class TypesController {
 
     @Autowired
     private FundTypeService fundTypeService;
+
+    @Autowired
+    private InOutSourcesService inOutSourcesService;
 
     /**
      * 获取用户关联的所有收支类型
@@ -73,6 +78,11 @@ public class TypesController {
         return num;
     }
 
+    /**
+     * 获取用户的所有资金类型
+     * @param params
+     * @return
+     */
     @CheckToken
     @RequestMapping(value = "/getFundTypeListByUserId", method = RequestMethod.POST)
     public List<FundType> getFundTypeListByUserId(@RequestBody Map params) {
@@ -82,6 +92,11 @@ public class TypesController {
         return result;
     }
 
+    /**
+     * 增加资金类型
+     * @param params
+     * @return
+     */
     @CheckToken
     @RequestMapping(value = "addFundType", method = RequestMethod.POST)
     public int addFundType(@RequestBody Map params) {
@@ -94,6 +109,15 @@ public class TypesController {
         fundType.setStatus(0);
         fundType.setUserId(Integer.parseInt(userId));
         int result = this.fundTypeService.addFundType(fundType);
+        return result;
+    }
+
+    @CheckToken
+    @RequestMapping(value = "getInOutSourcesListByUserId", method = RequestMethod.POST)
+    public List<InOutSources> getInOutSourcesListByUserId(@RequestBody Map params) {
+        List<InOutSources> result = null;
+        String userId = (String) params.get("userId");
+        result = this.inOutSourcesService.getListByUserId(Integer.parseInt(userId));
         return result;
     }
 }

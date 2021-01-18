@@ -27,7 +27,12 @@ public class InOutSources {
     // 收支类型id
     private int inOutTypeId;
 
+    // 用户id
+    private int userId;
+
     // 收支类型
     private InOutType inOutType;
 
+    // 用户
+    private User user;
 }

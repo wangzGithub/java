@@ -13,5 +13,6 @@
         <typeAlias alias="User" type="com.syica.statistics.bean.User" />
         <typeAlias alias="InOutType" type="com.syica.statistics.bean.InOutType" />
         <typeAlias alias="FundType" type="com.syica.statistics.bean.FundType" />
+        <typeAlias alias="InOutSources" type="com.syica.statistics.bean.InOutSources" />
     </typeAliases>
 </configuration>

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 /**
- * 收支类型Dao
+ * 收支分类Dao
  */
 @Component
 @Mapper
