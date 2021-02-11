@@ -18,4 +18,6 @@ public interface InOutTypeDao {
     int addInOutType(InOutType inOutType);
 
     int deleteInOutType(int id);
+
+    InOutType getInOutTypeById(int id);
 }

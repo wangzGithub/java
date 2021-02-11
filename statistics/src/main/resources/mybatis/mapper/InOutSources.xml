@@ -11,9 +11,32 @@
         <result column="in_out_type_id" property="inOutTypeId" javaType="Integer" />
         <result column="user_id" property="userId" javaType="Integer" />
     </resultMap>
+    
+    <resultMap id="ResultMapWithInOutType" extends="BaseResultMap" type="InOutSources">
+        <association property="inOutType" select="com.syica.statistics.dao.InOutTypeDao.getInOutTypeById"
+                     column="in_out_type_id" />
+    </resultMap>
 
-    <select id="getListByUserId" resultMap="BaseResultMap" parameterType="Integer">
+    <select id="getListByUserId" resultMap="ResultMapWithInOutType" parameterType="Integer">
         select * from tb_in_out_sources where user_id = #{0}
     </select>
+
+    <select id="getIfHasByName" resultType="Integer" parameterType="String">
+        select count(id) from tb_in_out_sources where name = #{0}
+    </select>
+
+    <insert id="saveInOutSources" parameterType="InOutSources">
+        insert into tb_in_out_sources (name, status, parent_id, in_out_type_id, user_id) values (
+            #{name}, #{status}, #{parentId}, #{inOutTypeId}, #{userId}
+        )
+    </insert>
+
+    <select id="getParentInOutSources" resultMap="BaseResultMap" parameterType="Integer">
+        select * from tb_in_out_sources where user_id =#{0} and parent_id = ''
+    </select>
+
+    <delete id="deleteInOutSources" parameterType="Integer">
+        delete from tb_in_out_sources where id = #{0}
+    </delete>
 
 </mapper>

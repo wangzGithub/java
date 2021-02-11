@@ -14,4 +14,12 @@ import java.util.List;
 public interface InOutSourcesDao {
 
     List<InOutSources> getListByUserId(int userId);
+
+    int getIfHasByName(String name);
+
+    int saveInOutSources(InOutSources inOutSources);
+
+    List<InOutSources> getParentInOutSources(int userId);
+
+    int deleteInOutSources(int id);
 }

@@ -112,6 +112,11 @@ public class TypesController {
         return result;
     }
 
+    /**
+     * 获取用户的所有收支类型
+     * @param params
+     * @return
+     */
     @CheckToken
     @RequestMapping(value = "getInOutSourcesListByUserId", method = RequestMethod.POST)
     public List<InOutSources> getInOutSourcesListByUserId(@RequestBody Map params) {
@@ -119,5 +124,58 @@ public class TypesController {
         String userId = (String) params.get("userId");
         result = this.inOutSourcesService.getListByUserId(Integer.parseInt(userId));
         return result;
+    }
+
+    /**
+     * 新增收支类型
+     * @param params
+     * @return
+     */
+    @CheckToken
+    @RequestMapping(value = "addInOutSources", method = RequestMethod.POST)
+    public int addInOutSources(@RequestBody Map params) {
+        int result = 0;
+        String name = (String) params.get("name");
+        int inOutTypeId = (Integer) params.get("inOutTypeId");
+        String userId = (String) params.get("userId");
+        // 先查询收支类型名称是否已存在 如果存在 返回2
+        int count = this.inOutSourcesService.getIfHasByName(name);
+        if (count > 0) {
+            result = 2;
+        } else {
+            InOutSources ios = new InOutSources();
+            ios.setName(name);
+            ios.setInOutTypeId(inOutTypeId);
+            ios.setUserId(Integer.parseInt(userId));
+            ios.setStatus(0);
+            result = this.inOutSourcesService.saveInOutSources(ios);
+        }
+        return result;
+    }
+
+    /**
+     * 删除收支分类
+     * @param params
+     * @return
+     */
+    @CheckToken
+    @RequestMapping(value = "/deleteInOutSource", method = RequestMethod.POST)
+    public int deleteInOutSource(@RequestBody Map params) {
+        int id = (int) params.get("id");
+        int num = this.inOutSourcesService.deleteInOutSources(id);
+        return num;
+    }
+
+    /**
+     * 获取所有父类收支类型
+     * @param params
+     * @return
+     */
+    @CheckToken
+    @RequestMapping(value = "getParentInOutSources", method = RequestMethod.POST)
+    public List<InOutSources> getParentInOutSources(@RequestBody Map params) {
+        String userId = (String) params.get("userId");
+        List<InOutSources> list = this.inOutSourcesService.getParentInOutSources(Integer.parseInt(userId));
+        return list;
     }
 }
