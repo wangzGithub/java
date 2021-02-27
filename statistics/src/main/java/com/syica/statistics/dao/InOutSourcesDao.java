@@ -22,4 +22,6 @@ public interface InOutSourcesDao {
     List<InOutSources> getParentInOutSources(int userId);
 
     int deleteInOutSources(int id);
+
+    InOutSources getInOutSourcesById(int id);
 }

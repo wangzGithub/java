@@ -33,6 +33,9 @@ public class InOutSources {
     // 收支类型
     private InOutType inOutType;
 
+    // 上级收支来源
+    private InOutSources inOutSources;
+
     // 用户
     private User user;
 }

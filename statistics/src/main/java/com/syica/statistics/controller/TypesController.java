@@ -137,7 +137,9 @@ public class TypesController {
         int result = 0;
         String name = (String) params.get("name");
         int inOutTypeId = (Integer) params.get("inOutTypeId");
+        int parentId = (Integer) params.get("parentId");
         String userId = (String) params.get("userId");
+        System.out.println(parentId);
         // 先查询收支类型名称是否已存在 如果存在 返回2
         int count = this.inOutSourcesService.getIfHasByName(name);
         if (count > 0) {
@@ -146,6 +148,7 @@ public class TypesController {
             InOutSources ios = new InOutSources();
             ios.setName(name);
             ios.setInOutTypeId(inOutTypeId);
+            ios.setParentId(parentId);
             ios.setUserId(Integer.parseInt(userId));
             ios.setStatus(0);
             result = this.inOutSourcesService.saveInOutSources(ios);
