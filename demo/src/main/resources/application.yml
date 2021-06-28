@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: "jdbc:mysql://localhost:2589/statistics?useUnicode=true&characterEncoding=utf-8\
+            &serverTimezone=UTC&allowPublicKeyRetrieval=true"
+    username: root
+    password: root
+
+mybatis:
+  config-location: classpath:mybatis/mybatis-config.xml
+  mapper-locations: classpath:mybatis/mapper/*.xml
+  type-aliases-package: com.example.demo.bean
